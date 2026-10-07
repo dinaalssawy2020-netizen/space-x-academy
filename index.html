@@ -1,24 +1,228 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rt
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Space X Academy</title>
-<style>
-body{margin:0;background:#0d0a2a;color:#fff;font-family:Tahoma;text-align:center;padding-bottom:80px}
-header{background:#17123a;padding:18px;position:sticky;top:0;z-index:9}
-#searchWrap{display:flex;gap:6px;justify-content:center;max-width:380px;margin:12px auto 0}
-#search{flex:1;padding:12px;border-radius:20px;border:0;background:#241e5a;color:#fff;text-align:center;outline:none}
-#searchBtn{background:#8b5cf6;color:#;font-weight:bold}
-#box{display:block}
-footer{padding:25px;background:#000;color:#fff;font-size:13px;font-weight:bold;margin-top:20px;border-top:2px solid #7c3aed}
-.gemini{position:fixed !important;bottom:20px !important;left:15px !important;background:linear-gradient(45deg,#7c3aed,#ec4899) !important;color:#fff !important;padding:14px 22px !important;border-radius:50px !important;text-decoration:none !important;font-size:13px !important;font-weight:bold !important;z-index:99999 !important;box-shadow:0 0 15px #ec4899;display:block !important}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space X Academy | الرئيسية</title>
+    <style>
+        /* المتغيرات الافتراضية للوضع المظلم (Dark Mode) */
+        :root {
+            --bg-main: #0d0a2a;
+            --bg-header: #17123a;
+            --bg-input: #241e5a;
+            --bg-card: #17123a;
+            --primary: #7c3aed;
+            --primary-hover: #ec4899;
+            --text-color: #ffffff;
+            --text-muted: #a0aec0;
+            --border-color: #3b357a;
+        }
+
+        /* متغيرات الوضع المضيء (Light Mode) */
+        [data-theme="light"] {
+            --bg-main: #f4f5f7;
+            --bg-header: #ffffff;
+            --bg-input: #e2e8f0;
+            --bg-card: #ffffff;
+            --primary: #7c3aed;
+            --primary-hover: #ec4899;
+            --text-color: #1a202c;
+            --text-muted: #4a5568;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-bottom: 60px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--bg-header);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto 15px auto;
+            padding: 0 15px;
+        }
+
+        header h3 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        /* زر تبديل الوضع */
+        #themeToggle {
+            background-color: var(--bg-input);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        #themeToggle:hover {
+            border-color: var(--primary);
+        }
+
+        #searchWrap {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        #search {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid transparent;
+            background-color: var(--bg-input);
+            color: var(--text-color);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #search:focus {
+            border-color: var(--primary);
+        }
+
+        #searchBtn {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: bold;
+            border: 0;
+            padding: 0 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #searchBtn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* أقسام التصفية */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px auto;
+            flex-wrap: wrap;
+            max-width: 800px;
+            padding: 0 15px;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-card);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* شبكة الكورسات */
+        #box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 25px 15px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.15);
+        }
+
+        .card b {
+            font-size: 16px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card a {
+            background-color: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            width: 80%;
+            transition: 0.3s;
+        }
+
+        .card a:hover {
+            background-color: var(--primary-hover);
+        }
+
+        footer {
+            padding: 25px;
+            background-color: var(--bg-header);
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+    </style>
 </head>
 <body>
+
 <header>
-<h3 style="margin:0">Space X Academy</h3>
-<div id="searchWrap"><input id="search" placeholder="search"><button id="searchBtn">بحث</button></div>
+    <div class="header-top">
+        <h3>Space X Academy</h3>
+        <!-- زر التبديل التفاعلي للوضع -->
+        <button id="themeToggle" onclick="toggleTheme()">🌙 وضع الليل</button>
+    </div>
+    <div id="searchWrap">
+        <input id="search" type="text" placeholder="ابحث عن كورس أو مجال...">
+        <button id="searchBtn">بحث</button>
+    </div>
 </header>
   <div class="academy-container">
     <!-- أقسام الكورسات (تطوير الويب، الذكاء الاصطناعي، التصميم، الأمن السيبراني، الأعمال واللغات) -->
@@ -30,41 +234,70 @@ footer{padding:25px;background:#000;color:#fff;font-size:13px;font-weight:bold;m
 </div>
   <!-- في ملف الـ HTML الخاص بكِ، تأكدي أن الأزرار بداخل حاوية تحمل هذا الـ id --
 
-<a class="gemini" href="https://gemini.google.com" target="_blank"> Gemini AI</a>
-<footer>Created by Dina Alssawy :© Space X Academy. All rights reserved © 2026<br>Space X Academy </footer>
-<script>
-const s=document.getElementById('search'),b=document.getElementeId('searchBtn');
-function doSearch(){
-  const v=s.value.toLowerCase().trim
-  document.querySelectorAll('.card').forEach(c=>{
-    const nar('b').innerText.toLerCase();
-    c.style.display = v==='' || name.includes(v) ? 'block' : 'none';
-  });
-}
-b.onclick=doSearch;
-s.addEventListener('
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space X Academy</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #121212; color: white; margin: 0; padding: 0; }
-        header { padding: 20px; background-color: #1a1a1a; }
-        .gemini-badge { color: #8ab4f8; font-size: 1.1rem; margin-top: 5px; }
-        .courses-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
-        .course-card { border: 1px solid #333; padding: 20px; text-align: center; border-radius: 12px; background: #1e1e1e; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        .course-card h3 { margin: 0 0 15px 0; font-size: 1.2rem; }
-        .download-btn { background: #8ab4f8; color: #121212; border: none; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; }
-        .download-btn:hover { background: #c2e7ff; }
-        .admin-link { display: inline-block; margin: 20px; color: #8ab4f8; text-decoration: none; font-size: 0.9rem; border: 1px dashed #8ab4f8; padding: 5px 15px; border-radius: 5px; }
-        footer { padding: 20px; background-color: #1a1a1a; margin-top: 40px; color: #aaa; font-size: 0.9rem; }
-    </style>
-</head>
-      <link rel="stylesheet" href="style.css">
+<div id="box"></div>
 
-<body>
+<footer>
+    <p>&copy; 2026 جميع الحقوق محفوظة.</p>
+</footer>
+
+<script>
+    // قاعدة البيانات المنظمة
+    const courses = [
+        { name: "HTML", category: "web", link: "https://youtube.com" },
+        { name: "CSS", category: "web", link: "#" },
+        { name: "JavaScript", category: "web", link: "#" },
+        { name: "Python", category: "web", link: "#" },
+        { name: "React", category: "web", link: "#" },
+        { name: "Node.js", category: "web", link: "#" },
+        { name: "SQL", category: "web", link: "#" },
+        { name: "PHP", category: "web", link: "#" },
+        { name: "Git & GitHub", category: "web", link: "#" },
+        
+        { name: "Figma", category: "design", link: "#" },
+        { name: "UI/UX Design", category: "design", link: "#" },
+        { name: "Photoshop", category: "design", link: "#" },
+        { name: "Illustrator", category: "design", link: "#" },
+        { name: "After Effects", category: "design", link: "#" },
+        { name: "Premiere Pro", category: "design", link: "#" },
+        { name: "Blender 3D", category: "design", link: "#" },
+        
+        { name: "Artificial Intelligence", category: "data", link: "#" },
+        { name: "Data Science", category: "data", link: "#" },
+        { name: "Machine Learning", category: "data", link: "#" },
+        { name: "Power BI", category: "data", link: "#" },
+        { name: "Cyber Security", category: "data", link: "#" },
+        
+        { name: "English Language", category: "business", link: "#" },
+        { name: "German Language", category: "business", link: "#" },
+        { name: "Freelancing", category: "business", link: "#" },
+        { name: "Digital Marketing", category: "business", link: "#" },
+        { name: "Project Management", category: "business", link: "#" },
+        { name: "Excel Advanced", category: "business", link: "#" }
+    ];
+
+    const box = document.getElementById('box');
+    const searchInput = document.getElementById('search');
+    const themeToggleBtn = document.getElementById('themeToggle');
+
+    // منطق التبديل بين الوضعين المظلم والمضيء وحفظ الخيار
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggleBtn.innerHTML = "☀️ وضع النهار";
+    }
+
+    function toggleTheme() {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'light') {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggleBtn.innerHTML = "🌙 وضع الليل";
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeToggleBtn.innerHTML = "☀️ وضع النهار";
+            localStorage.setItem('theme', 'light');
+        }
+    }
 
     <!-- الهيدر الأصلي الخاص بكِ مضافاً إليه توقيع جميني -->
     <header>
