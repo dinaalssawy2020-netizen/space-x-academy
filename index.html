@@ -236,7 +236,7 @@
 <div id="box"></div>
 
 <footer>
-    <p>&copy;created by dinaalssawy </p>
+    <p>&copy;created by dinaalssawy2026 </p>
 </footer>
 
 <script>
@@ -282,18 +282,18 @@
     const currentTheme = localStorage.getItem('theme') || 'dark';
     if (currentTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
-        themeToggleBtn.innerHTML = "☀️ وضع النهار";
+        themeToggleBtn.innerHTML = "☀️ ";
     }
 
     function toggleTheme() {
         let theme = document.documentElement.getAttribute('data-theme');
         if (theme === 'light') {
             document.documentElement.removeAttribute('data-theme');
-            themeToggleBtn.innerHTML = "🌙 وضع الليل";
+            themeToggleBtn.innerHTML = "🌙 ";
             localStorage.setItem('theme', 'dark');
         } else {
             document.documentElement.setAttribute('data-theme', 'light');
-            themeToggleBtn.innerHTML = "☀️ وضع النهار";
+            themeToggleBtn.innerHTML = "☀️ ";
             localStorage.setItem('theme', 'light');
         }
     }
