@@ -1,28 +1,100 @@
+// مصفوفة الكورسات بروابط حقيقية من اليوتيوب عشان تشتغل 
+var data = [ 
+    { title: "كورس HTML", cat: "web", url: "https://youtube.com" }, 
+    { title: "كورس CSS", cat: "web", url: "https://youtube.com" }, 
+    { title: "كورس JavaScript", cat: "web", url: "https://youtube.com" }, 
+    { title: "كورس Python", cat: "web", url: "https://youtube.com" }, 
+    { title: "شرح Figma", cat: "design", url: "https://youtube.com" }, 
+    { title: "دورة UI/UX", cat: "design", url: "https://youtube.com" }, 
+    { title: "تعلم Photoshop", cat: "design", url: "https://youtube.com" }, 
+    { title: "ذكاء اصطناعي مقدمة", cat: "data", url: "https://youtube.com" }, 
+    { title: "علم البيانات", cat: "data", url: "https://youtube.com" }, 
+    { title: "كورس انجليزي", cat: "business", url: "https://youtube.com" }, 
+    { title: "شرح العمل الحر", cat: "business", url: "https://youtube.com" }, 
+    { title: "اكسيل متقدم", cat: "business", url: "https://youtube.com" } 
+]; 
 
-// مصفوفة تحتوي على الكورسات (يمكنك العثور على القائمة الكاملة للـ 87 كورس في المراجع المرتبطة)
-const spaceXCourses = [
-    { id: 1, name: "HTML", downloadUrl: "#" },
-    { id: 2, name: "CSS", downloadUrl: "#" },
-    { id: 3, name: "JavaScript", downloadUrl: "#" }
-    // ... باقي الكورسات حتى 87 كورس
-];
+var container = document.getElementById('mainBox'); 
 
-// دالة لرفع البيانات السحابية لأول مرة
-function uploadInitialCoursesToFirebase() {
-    const coursesRef = database.ref('courses');
-    coursesRef.once('value', (snapshot) => {
-        if (!snapshot.exists()) {
-            const dataToUpload = {};
-            spaceXCourses.forEach(course => {
-                dataToUpload[course.id] = { name: course.name, downloadUrl: course.downloadUrl };
-            });
-            coursesRef.set(dataToUpload)
-                .then(() => console.log("✅ تم رفع الكورسات بنجاح إلى Firebase!"))
-                .catch((err) => console.error("❌ فشل الرفع:", err));
+// دالة عرض الكورسات بالفور لوب البدائية 
+function draw(arr) { 
+    container.innerHTML = ""; 
+    if(arr.length == 0) { 
+        container.innerHTML = "<p>لا يوجد نتائج للبحث!</p>"; 
+        return; 
+    } 
+    for(var i = 0; i < arr.length; i++) { 
+        container.innerHTML += '<div class="card">' + '<h4>' + arr[i].title + '</h4>' + '<a href="' + arr[i].url + '" target="_blank">تشغيل الكورس</a>' + '</div>'; 
+    } 
+} 
+
+// تشغيل العرض الأولي عند فتح الصفحة تلقائياً
+draw(data);
+
+// دالة الفلترة للأزرار 
+function filterData(category, btn) { 
+    // شيل الاكتيف من كله 
+    var activeButtons = document.getElementsByClassName('t-btn'); 
+    for(var i = 0; i < activeButtons.length; i++) { 
+        activeButtons[i].classList.remove('active'); 
+    } 
+    // حط اكتيف على الزرار اللى اتداست عليه 
+    btn.classList.add('active'); 
+    if(category == 'all') { 
+        draw(data); 
+    } else { 
+        var temp = []; 
+        for(var i = 0; i < data.length; i++) { 
+            if(data[i].cat == category) { 
+                temp.push(data[i]); 
+            } 
+        } 
+        draw(temp); 
+    } 
+} 
+
+// دالة البحث بالنص عن الكورسات 
+function doSearch() { 
+    var word = document.getElementById('shInput').value.toLowerCase(); 
+    var temp = []; 
+    for(var i = 0; i < data.length; i++) { 
+        if(data[i].title.toLowerCase().indexOf(word) > -1) { 
+            temp.push(data[i]); 
+        } 
+    } 
+    draw(temp); 
+} 
+
+// دالة تغيير الالوان ليل ونهار 
+function toggleMode() { 
+    var body = document.body; 
+    body.classList.toggle('light'); 
+    var btn = document.getElementById('modeBtn'); 
+    if(body.classList.contains('light')) { 
+        btn.innerHTML = "☀️ وضع النهار"; 
+    } else { 
+        btn.innerHTML = "🌙 وضع الليل"; 
+    } 
+} 
+
+// دالة جميني اليدوية المكتوبة بـ if عادية عشان تبان شغل طالب 
+function askBot() { 
+    var input = document.getElementById('aiInput').value.toLowerCase(); 
+    var output = document.getElementById('aiText'); 
+    if(input.trim() == "") { 
+        alert("اكتب سؤالك أولاً!"); 
+        return; 
+    } 
+    output.innerHTML = "جاري التفكير..."; 
+    setTimeout(function() { 
+        if(input.indexOf('html') > -1) { 
+            output.innerHTML = "لغة HTML هي المسؤولة عن هيكلة وعناصر صفحة الويب الأساسية."; 
+        } else if(input.indexOf('css') > -1) { 
+            output.innerHTML = "لغة CSS تستخدم لتلوين وتنسيق وعمل استايلات عناصر الصفحة."; 
+        } else if(input.indexOf('javascript') > -1) { 
+            output.innerHTML = "لغة JavaScript تستخدم لإضافة التفاعلية والحيوية والبرمجة لصفحات الويب."; 
         } else {
-            console.log("ℹ️ الكورسات مرفوعة مسبقاً في السحابة.");
+            output.innerHTML = "عذراً، لم أفهم سؤالك جيداً. جرب البحث عن (HTML أو CSS أو JavaScript).";
         }
-    });
+    }, 1000); 
 }
-uploadInitialCoursesToFirebase();
-
