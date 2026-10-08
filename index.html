@@ -1,1 +1,47 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space X Academy - created by dinaalssawy </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Space X Academy</h1>
+        <button id="modeBtn" onclick="toggleMode()">🌙 </button>
+        
+        <div class="search-div">
+            <input type="text" id="shInput" placeholder="ابحث عن كورس...">
+            <button id="shBtn" onclick="doSearch()">بحث</button>
+        </div>
+    </div>
+
+    <div class="all-btns">
+        <button class="t-btn active" onclick="filterData('all', this)">الكل</button>
+        <button class="t-btn" onclick="filterData('web', this)">ويب</button>
+        <button class="t-btn" onclick="filterData('design', this)">تصميم</button>
+        <button class="t-btn" onclick="filterData('data', this)">ذكاء اصطناعي</button>
+        <button class="t-btn" onclick="filterData('business', this)">لغات واعمال</button>
+    </div>
+
+    <!-- صندوق عرض الكورسات -->
+    <div id="mainBox"></div>
+
+    <!-- بوكس جميني مبرمج يدوي بسيط -->
+    <div class="ai-box">
+        <h3>🤖  للمساعدة</h3>
+        <div id="aiText" سؤال في المنهج وسأجيبك..</div>
+        <input type="text" id="aiInput" placeholder="اكتب سؤالك هنا...">
+        <button onclick="askBot()">إرسال</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px; font-size: 14px; color: #888;">
+        © created by dinaalssawy 2026
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
