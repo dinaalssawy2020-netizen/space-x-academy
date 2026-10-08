@@ -1,11 +1,179 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space X Academy - created by dinaalssawy </title>
-    <link rel="stylesheet" href="style.css">
+    <title>Space X Academy - </title>
+    
+    <!-- ستايل الألوان (موف في أسود) القديم الكلاسيكي -->
+    <style>
+        body { 
+            background-color: #0b091a; 
+            color: #ffffff; 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+        } 
+
+        /* ستايل النهار */ 
+        .light { 
+            background-color: #f0f0f0; 
+            color: #000000; 
+        } 
+
+        .header { 
+            background-color: #161333; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            border: 1px solid #3b357a;
+        } 
+
+        .light .header { 
+            background-color: #ffffff; 
+            border: 1px solid #ccc; 
+        } 
+
+        #modeBtn { 
+            padding: 5px 10px; 
+            cursor: pointer; 
+            background-color: #7c3aed;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        } 
+
+        .search-div { 
+            margin-top: 15px; 
+        } 
+
+        #shInput { 
+            padding: 8px; 
+            width: 200px; 
+            border: 1px solid #3b357a;
+            background: #0b091a;
+            color: white;
+            border-radius: 4px;
+        } 
+        .light #shInput {
+            background: white;
+            color: black;
+            border: 1px solid #ccc;
+        }
+
+        #shBtn { 
+            padding: 8px 15px; 
+            background-color: #7c3aed; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 4px;
+        } 
+
+        /* ألوان التابات والأزرار الموف في أسود */ 
+        .all-btns { 
+            margin: 20px 0; 
+        } 
+
+        .t-btn { 
+            background-color: #161333; 
+            color: #ffffff; 
+            padding: 8px 15px; 
+            border: 1px solid #3b357a; 
+            margin: 5px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+        } 
+
+        .light .t-btn { 
+            background-color: #ffffff; 
+            color: black; 
+            border: 1px solid #ccc; 
+        } 
+
+        .t-btn.active { 
+            background-color: #7c3aed; 
+            color: white;
+            border-color: #7c3aed;
+        } 
+
+        /* الكورسات */ 
+        #mainBox { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+            justify-content: center; 
+        } 
+
+        .card { 
+            background-color: #161333; 
+            border: 1px solid #3b357a; 
+            width: 150px; 
+            padding: 15px; 
+            border-radius: 8px; 
+            text-align: center; 
+        } 
+
+        .light .card { 
+            background-color: #ffffff; 
+            border: 1px solid #ccc; 
+        } 
+
+        .card h4 { 
+            margin: 0 0 10px 0; 
+        } 
+
+        /* بوت جميني */ 
+        .ai-box { 
+            margin: 30px auto; 
+            max-width: 400px; 
+            background: #161333; 
+            border: 1px solid #3b357a; 
+            padding: 15px; 
+            border-radius: 8px; 
+        } 
+
+        .light .ai-box { 
+            background: #ffffff; 
+            border: 1px solid #ccc; 
+        } 
+
+        #aiText { 
+            background: #0b091a; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            font-size: 13px; 
+            border-radius: 5px; 
+            text-align: right; 
+        } 
+
+        .light #aiText { 
+            background: #e0e0e0; 
+        }
+
+        #aiInput {
+            padding: 8px;
+            width: 65%;
+            border: 1px solid #3b357a;
+            background: #0b091a;
+            color: white;
+            border-radius: 4px;
+        }
+        .light #aiInput {
+            background: white;
+            color: black;
+            border: 1px solid #ccc;
+        }
+
+        .ai-box button {
+            padding: 8px 12px;
+            background-color: #7c3aed;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,6 +187,13 @@
         </div>
     </div>
 
+    <!-- شاشة عرض الفيديوهات المدمجة من اليوتيوب لتعمل تلقائياً -->
+    <div style="text-align: center; margin: 20px auto; max-width: 560px;">
+        <iframe id="videoPlayer" width="100%" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px; display: none; background: #000; border: 2px solid #3b357a;"></iframe>
+        <p id="playerPlaceholder" style="color: #888;">اضغط على "تشغيل الكورس" بالأسفل لعرض المحتوى هنا المباشر</p>
+    </div>
+
+    <!-- الأزرار والتابات -->
     <div class="all-btns">
         <button class="t-btn active" onclick="filterData('all', this)">الكل</button>
         <button class="t-btn" onclick="filterData('web', this)">ويب</button>
@@ -30,18 +205,96 @@
     <!-- صندوق عرض الكورسات -->
     <div id="mainBox"></div>
 
-    <!-- بوكس جميني مبرمج يدوي بسيط -->
+    <!-- بوكس جميني المساعد -->
     <div class="ai-box">
-        <h3>🤖  للمساعدة</h3>
-        <div id="aiText" سؤال في المنهج وسأجيبك..</div>
+        <h3>🤖 للمساعدة</h3>
+        <div id="aiText"> سؤال في المنهج وسأجيبك..</div>
         <input type="text" id="aiInput" placeholder="اكتب سؤالك هنا...">
         <button onclick="askBot()">إرسال</button>
     </div>
 
-    <div style="text-align: center; margin-top: 50px; font-size: 14px; color: #888;">
+    <div style="text-align: center; margin-top: 50px; font-size: 14px; color: #555;">
         © created by dinaalssawy 2026
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- أكواد الجافا سكريبت والروابط الحقيقية لشاشات اليوتيوب المدمجة -->
+    <script>
+        var data = [ 
+            { title: "كورس HTML", cat: "web", url: "https://youtube.com" }, 
+            { title: "كورس CSS", cat: "web", url: "https://youtube.com" }, 
+            { title: "كورس JavaScript", cat: "web", url: "https://youtube.com" }, 
+            { title: "كورس Python", cat: "web", url: "https://youtube.com" }, 
+            { title: "شرح Figma", cat: "design", url: "https://youtube.com" }, 
+            { title: "دورة UI/UX", cat: "design", url: "https://youtube.com" }, 
+            { title: "تعلم Photoshop", cat: "design", url: "https://youtube.com" }, 
+            { title: "ذكاء اصطناعي مقدمة", cat: "data", url: "https://youtube.com" }, 
+            { title: "علم البيانات", cat: "data", url: "https://youtube.com" }, 
+            { title: "كورس انجليزي", cat: "business", url: "https://youtube.com" }, 
+            { title: "شرح العمل الحر", cat: "business", url: "https://youtube.com" }, 
+            { title: "اكسيل متقدم", cat: "business", url: "https://youtube.com" } 
+        ]; 
+
+        var container = document.getElementById('mainBox'); 
+
+        function draw(arr) { 
+            container.innerHTML = ""; 
+            if(arr.length == 0) { 
+                container.innerHTML = "<p>لا يوجد نتائج للبحث!</p>"; 
+                return; 
+            } 
+            for(var i = 0; i < arr.length; i++) { 
+                container.innerHTML += '<div class="card">' + 
+                    '<h4>' + arr[i].title + '</h4>' + 
+                    '<button onclick="playVideo(\'' + arr[i].url + '\')" style="background-color: #7c3aed; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;">تشغيل الكورس</button>' + 
+                    '</div>'; 
+            } 
+        } 
+
+        function playVideo(videoUrl) {
+            var player = document.getElementById('videoPlayer');
+            var placeholder = document.getElementById('playerPlaceholder');
+            
+            player.src = videoUrl; 
+            player.style.display = "block"; 
+            placeholder.style.display = "none"; 
+        }
+
+        draw(data);
+
+        function filterData(category, btn) { 
+            var activeButtons = document.getElementsByClassName('t-btn'); 
+            for(var i = 0; i < activeButtons.length; i++) { 
+                activeButtons[i].classList.remove('active'); 
+            } 
+            btn.classList.add('active'); 
+            if(category == 'all') { 
+                draw(data); 
+            } else { 
+                var temp = []; 
+                for(var i = 0; i < data.length; i++) { 
+                    if(data[i].cat == category) { 
+                        temp.push(data[i]); 
+                    } 
+                } 
+                draw(temp); 
+            } 
+        } 
+
+        function doSearch() { 
+            var word = document.getElementById('shInput').value.toLowerCase(); 
+            var temp = []; 
+            for(var i = 0; i < data.length; i++) { 
+                if(data[i].title.toLowerCase().indexOf(word) > -1) { 
+                    temp.push(data[i]); 
+                } 
+            } 
+            draw(temp); 
+        } 
+
+        function toggleMode() { 
+            var body = document.body; 
+            body.classList.toggle('light'); 
+            var btn = document.getElementById('modeBtn'); 
+            if(body.classList.contains('light')) { 
+                btn.innerHTML = "☀️  "; 
+            } else { 
