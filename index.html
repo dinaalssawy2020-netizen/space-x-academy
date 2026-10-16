@@ -6,41 +6,61 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{font-family:'Cairo';box-sizing:border-box}body{background:#050510;color:#fff;margin:0}
-.top{background:#302b63;padding:20px;text-align:center}
-#box{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:15px}
-.card{background:#1a1a35;border:1px solid #2a2a5a;border-radius:12px;padding:15px;text-align:center}
-.card b{font-size:14px;display:block} .card span{font-size:11px;color:#999;display:block;margin:5px 0 10px}
+.top{background:linear-gradient(90deg,#0f0c29,#302b63);padding:22px;text-align:center;border-bottom:2px solid #a78bfa}
+.search{background:#11112a;padding:12px;text-align:center;position:sticky;top:0;z-index:99}
+.search input{padding:10px 15px;border-radius:20px;border:1px solid #333;width:65%;background:#1a1a3a;color:#fff}
+#box{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
+.card{background:#1a1a35;border:1px solid #2a2a5a;border-radius:14px;padding:15px;text-align:center}
+.card b{font-size:13px;display:block} .card span{font-size:11px;color:#888;display:block;margin:5px 0 10px}
 .card a{background:#fff;color:#000;padding:8px;display:block;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px}
+.assist{background:#0f0f25;margin:15px;border-radius:16px;padding:18px;border:1px solid #a78bfa}
+.footer{background:#080818;padding:22px;text-align:center;border-top:1px solid #1a1a3a;margin-top:20px}
+.footer b{color:#a78bfa}
 </style>
 </head>
 <body>
-<div class="top"><h1> SPACE X ACADEMY</h1><p> 
+<div class="top"><h1> SPACE X ACADEMY</h1><p></p></div>
+<div class="search"><input id="s" placeholder="ابحث: Python, HTML, Figma..."></div>
 <div id="box"></div>
+
+<div class="assist">
+<h3 style="text-align:center;margin:0 0 12px">✨ Gemini - المساعد الذكي</h3>
+<div style="display:flex;gap:8px"><input id="q" placeholder="اسألي: ازاي ابقى فرونت اند؟" style="flex:1;padding:11px;border-radius:10px;border:1px solid #333;background:#1a1a3a;color:#fff"><button onclick="ask()" style="padding:11px 18px;border-radius:10px;border:none;background:#a78bfa;font-weight:bold;cursor:pointer">إرسال</button></div>
+<div id="a" style="margin-top:12px;color:#ccc;font-size:13px;line-height:1.7"></div>
+</div>
+
+<div class="footer">
+<div style="font-weight:bold;font-size:14px">: <b/ </b></div>
+<div style="font-size:11px;color:#666;margin-top:8px">Space X Academy © 2026 - Created by dinaalssawy - allrightsreserved </div>
+</div>
+
 <script>
 const courses=[
-["HTML5","Elzero - 37 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAwltIl0UIdRSzfh_C1jG9YlN"],
-["CSS3","Elzero - 88 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy1M0pIugF2vJ6Y7mN9gZt1"],
-["JavaScript","Elzero - 188 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLrvUD9rUs"],
-["Python","Elzero - 150 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE2A4PVcdOBxbMnPj-OHQ"],
-["React","Codezilla","https://www.youtube.com/results?search_query=react+js+elzero"],
-["PHP","Elzero PHP 8","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy41u35AqJUrI-H83DObUDq"],
-["Laravel","Laravel 10","https://www.youtube.com/results?search_query=laravel+elzero"],
-["MySQL","قواعد بيانات","https://www.youtube.com/playlist?list=PLDoPjvoNmBAzH72MTPuAAaYfR3z2Qd7zF"],
-["Git & GitHub","Git","https://www.youtube.com/playlist?list=PLDoPjvoNmBAw4SiQH2vN2r6pR5M1t7v9k"],
-["Figma","UI/UX Figma","https://www.youtube.com/results?search_query=figma+course+arabic"],
-["Photoshop","Photoshop CC","https://www.youtube.com/results?search_query=photoshop+elzero"],
-["Illustrator","Illustrator","https://www.youtube.com/results?search_query=illustrator+elzero"],
-["ذكاء اصطناعي","مقدمة AI","https://www.youtube.com/results?search_query=artificial+intelligence+arabic"],
+["HTML5","الزيرو - 37 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAwltIl0UIdRSzfh_C1jG9YlN"],
+["CSS3","الزيرو - 88 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy1M0pIugF2vJ6Y7mN9gZt1"],
+["JavaScript","الزيرو - 188 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLrvUD9rUs"],
+["Python","الزيرو - 150 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE2A4PVcdOBxbMnPj-OHQ"],
+["React JS","Codezilla","https://www.youtube.com/results?search_query=react+js+elzero"],
+["PHP","PHP 8","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy41u35AqJUrI-H83DObUDq"],
+["MySQL","قواعد بيانات","https://www.youtube.com/results?search_query=mysql+elzero"],
+["Git & GitHub","Git","https://www.youtube.com/results?search_query=git+github+elzero"],
+["Figma","UI/UX","https://www.youtube.com/results?search_query=figma+arabic+course"],
+["Photoshop","فوتوشوب","https://www.youtube.com/results?search_query=photoshop+elzero"],
+["Illustrator","اليستريتور","https://www.youtube.com/results?search_query=illustrator+arabic"],
+["After Effects","موشن","https://www.youtube.com/results?search_query=after+effects+arabic"],
+["ذكاء اصطناعي","مقدمة AI","https://www.youtube.com/results?search_query=artificial+intelligence+arabic+course"],
 ["Machine Learning","تعلم آلة","https://www.youtube.com/results?search_query=machine+learning+arabic"],
-["ChatGPT","احتراف ChatGPT","https://www.youtube.com/results?search_query=chatgpt+arabic"],
-["Flutter","تطبيقات موبايل","https://www.youtube.com/results?search_query=flutter+arabic"],
-["Java","Java كاملة","https://www.youtube.com/results?search_query=java+elzero"],
-["C++","C++","https://www.youtube.com/results?search_query=c%2B%2B+elzero"],
+["ChatGPT","احتراف","https://www.youtube.com/results?search_query=chatgpt+course+arabic"],
+["Flutter","تطبيقات","https://www.youtube.com/results?search_query=flutter+arabic+course"],
 ["Cyber Security","امن سيبراني","https://www.youtube.com/results?search_query=cyber+security+arabic"],
-["Blender 3D","Blender","https://www.youtube.com/results?search_query=blender+3d+arabic"]
+["Blender","3D","https://www.youtube.com/results?search_query=blender+3d+arabic"],
+["Excel","اكسيل","https://www.youtube.com/results?search_query=excel+arabic+course"],
+["WordPress","ووردبريس","https://www.youtube.com/results?search_query=wordpress+elzero"]
 ];
-let h="";courses.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><span>${c[1]}</span><a href="${c[2]}" target="_blank">ابدأ التعلم الآن 🚀</a></div>`});
-document.getElementById("box").innerHTML=h;
+function render(list){let h="";list.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><span>${c[1]}</span><a href="${c[2]}" target="_blank">ابدأ التعلم 🚀</a></div>`});document.getElementById("box").innerHTML=h;}
+document.getElementById("s").addEventListener("input",e=>{let v=e.target.value.toLowerCase();render(courses.filter(c=>c[0].toLowerCase().includes(v)||c[1].includes(v)))});
+function ask(){let qq=document.getElementById("q").value.trim();let aa=document.getElementById("a");if(!qq){aa.innerHTML="اكتبي سؤالك";return;}aa.innerHTML="⏳ Gemini بيفكر...";setTimeout(()=>{aa.innerHTML=`بالنسبة لـ "${qq}" : ابدأي بالاساسيات HTML -> CSS -> JS وبعدها تخصصي! 🚀`;},700);}
+render(courses);
 </script>
 </body>
 </html>
