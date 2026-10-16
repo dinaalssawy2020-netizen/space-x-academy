@@ -10,9 +10,11 @@ body{background:#0a0a1a;color:#fff;font-family:Arial;padding:10px}
 .card b{display:block;margin-bottom:10px;font-size:18px}
 .card a{background:#a78bfa;color:#000;padding:6px 14px;border-radius:8px;text-decoration:none;display:inline-block}
 #box{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-input{padding:8px;border-radius:8px;border:none;width:70%}
+input{padding:8px;border-radius:8px;border:none;width:65%}
 button{padding:6px 10px;margin:3px;border-radius:8px;border:none;background:#2a2a5a;color:#fff}
 button.active{background:#a78bfa;color:#000}
+.gemini{background:#1a1a3a;padding:15px;border-radius:12px;margin-top:20px;text-align:center;border:1px solid #a78bfa}
+.footer{text-align:center;margin-top:20px;color:#666;font-size:12px}
 </style>
 </head>
 <body>
@@ -26,7 +28,18 @@ button.active{background:#a78bfa;color:#000}
 <button onclick="filterC('ذكاء')">ذكاء اصطناعي</button>
 </div>
 </div>
+
 <div id="box"></div>
+
+<div class="gemini">
+<h3>✨ المساعدة - Gemini</h3>
+<input id="gemQ" placeholder="اسأل عن اي كورس...">
+<button onclick="askGem()">إرسال</button>
+<div id="gemA" style="margin-top:10px;text-align:right"></div>
+</div>
+
+<div class="footer">created by dinaalssawy 2026 ©</div>
+
 <script>
 const courses=[
 ["HTML","https://www.youtube.com/playlist?list=PLDoPjvoNmBAw_t_XWUFbBX-c9M_afMO35u","كود"],
@@ -36,15 +49,22 @@ const courses=[
 ["React","https://www.youtube.com/playlist?list=PLDoPjvoNmBAzjsMv8SMR4sUC0X3w1JSe2","كود"],
 ["Figma","https://www.youtube.com/watch?v=ezldKx-rEY0","تصميم"],
 ["Photoshop","https://www.youtube.com/watch?v=1u1TI1hJ8oQ","تصميم"],
-["Excel","https://www.youtube.com/playlist?list=PL1DU3v1b2h5G5yNiQy2kC1t2","كود"],
+["Excel","https://www.youtube.com/watch?v=8lX9i2N2l2","كود"],
 ["AI","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["English","https://www.youtube.com/playlist?list=PLp22-4PivYmL-4Z9Py6q9v4","كود"]
+["English","https://www.youtube.com/watch?v=9lX9i2N2l2","كود"]
 ];
 function render(list){
 let h=""; list.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><a href="${c[1]}" target="_blank">تحميل</a></div>`}); document.getElementById("box").innerHTML=h;
 }
 function doSearch(){let v=document.getElementById("search").value; render(courses.filter(c=>c[0].toLowerCase().includes(v.toLowerCase())));}
 function filterC(t){if(t=="all")render(courses);else render(courses.filter(c=>c[2]==t));}
+function askGem(){
+let q=document.getElementById("gemQ").value;
+let a=document.getElementById("gemA");
+if(!q){a.innerHTML="اكتب سؤالك الاول";return;}
+a.innerHTML="جاري البحث...";
+setTimeout(()=>{a.innerHTML=`لـ "${q}" انصحك تبدأ بكورس ${courses[0][0]} - هتلاقيه فوق!`},800);
+}
 render(courses);
 </script>
 </body>
