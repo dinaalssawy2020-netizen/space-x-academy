@@ -25,7 +25,7 @@
 
 <div class="assist">
 <h3 style="text-align:center;margin:0 0 12px">✨ Gemini - المساعد الذكي</h3>
-<div style="display:flex;gap:8px"><input id="q" placeholder="اسألي: ازاي ابقى فرونت اند؟" style="flex:1;padding:11px;border-radius:10px;border:1px solid #333;background:#1a1a3a;color:#fff"><button onclick="ask()" style="padding:11px 18px;border-radius:10px;border:none;background:#a78bfa;font-weight:bold;cursor:pointer">إرسال</button></div>
+<div style="display:flex;gap:8px"><input id="q" placeholder=اسألني؟" style="flex:1;padding:11px;border-radius:10px;border:1px solid #333;background:#1a1a3a;color:#fff"><button onclick="ask()" style="padding:11px 18px;border-radius:10px;border:none;background:#a78bfa;font-weight:bold;cursor:pointer">إرسال</button></div>
 <div id="a" style="margin-top:12px;color:#ccc;font-size:13px;line-height:1.7"></div>
 </div>
 
@@ -57,9 +57,9 @@ const courses=[
 ["Excel","اكسيل","https://www.youtube.com/results?search_query=excel+arabic+course"],
 ["WordPress","ووردبريس","https://www.youtube.com/results?search_query=wordpress+elzero"]
 ];
-function render(list){let h="";list.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><span>${c[1]}</span><a href="${c[2]}" target="_blank">ابدأ التعلم 🚀</a></div>`});document.getElementById("box").innerHTML=h;}
+function render(list){let h="";list.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><span>${c[1]}</span><a href="${c[2]}" target="_blank">ابدأ التعلم</a></div>`});document.getElementById("box").innerHTML=h;}
 document.getElementById("s").addEventListener("input",e=>{let v=e.target.value.toLowerCase();render(courses.filter(c=>c[0].toLowerCase().includes(v)||c[1].includes(v)))});
-function ask(){let qq=document.getElementById("q").value.trim();let aa=document.getElementById("a");if(!qq){aa.innerHTML="اكتبي سؤالك";return;}aa.innerHTML="⏳ Gemini بيفكر...";setTimeout(()=>{aa.innerHTML=`بالنسبة لـ "${qq}" : ابدأي بالاساسيات HTML -> CSS -> JS وبعدها تخصصي! 🚀`;},700);}
+function ask(){let qq=document.getElementById("q").value.trim();let aa=document.getElementById("a");if(!qq){aa.innerHTML="اكتبي سؤالك";return;}aa.innerHTML="⏳ Gemini بيفكر...";setTimeout(()=>{aa.innerHTML=`بالنسبة لـ "${qq}" : ابدأي بالاساسيات HTML -> CSS -> JS وبعدها تخصصي! ;},700);}
 render(courses);
 </script>
 </body>
