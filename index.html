@@ -6,88 +6,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{font-family:'Cairo';box-sizing:border-box}body{background:#050510;color:#fff;margin:0}
-.top{background:linear-gradient(90deg,#0f0c29,#302b63,#24243e);padding:22px;text-align:center;border-bottom:2px solid #a78bfa}
-.search-area{background:#11112a;padding:15px;text-align:center;position:sticky;top:0;z-index:99}
-.search-area input{padding:11px 16px;border-radius:25px;border:1px solid #333;width:66%;background:#1a1a3a;color:#fff}
-.search-area button{padding:10px 18px;border-radius:25px;border:none;background:#fff;color:#000;font-weight:bold;cursor:pointer}
-.filters{margin-top:12px} .filters button{background:transparent;border:1px solid #444;color:#aaa;padding:6px 15px;border-radius:20px;margin:3px;cursor:pointer}
-.filters button.active{background:#a78bfa;color:#000;border-color:#a78bfa;font-weight:bold}
-#box{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
-.card{background:linear-gradient(145deg,#1a1a35,#1e1e45);border:1px solid #2a2a5a;border-radius:14px;padding:16px;text-align:center}
-.card b{font-size:13.5px;display:block} .card span{font-size:10.5px;color:#888;display:block;margin:4px 0 10px 0}
-.card a{background:#fff;color:#000;padding:8px 0;width:100%;border-radius:8px;text-decoration:none;display:block;font-weight:bold;font-size:12px;cursor:pointer}
-.assist{background:#0f0f25;margin:15px;border-radius:16px;padding:18px;border:1px solid #a78bfa}
-.footer{background:#080818;padding:22px;text-align:center;border-top:1px solid #1a1a3a;margin-top:20px}
+.top{background:#302b63;padding:20px;text-align:center}
+#box{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:15px}
+.card{background:#1a1a35;border:1px solid #2a2a5a;border-radius:12px;padding:15px;text-align:center}
+.card b{font-size:14px;display:block} .card span{font-size:11px;color:#999;display:block;margin:5px 0 10px}
+.card a{background:#fff;color:#000;padding:8px;display:block;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px}
 </style>
 </head>
 <body>
-<div class="top"><h1> SPACE X ACADEMY</h1><p>60 كورس مجاني - من الصفر للاحتراف</p></div>
-<div class="search-area">
-<input id="search" placeholder="ابحث: Python, HTML, AI..."><button onclick="doSearch()">بحث</button>
-<div class="filters">
-<button class="active" onclick="filterC('all',this)">الكل</button>
-<button onclick="filterC('كود',this)">البرمجة</button>
-<button onclick="filterC('تصميم',this)">التصميم</button>
-<button onclick="filterC('ذكاء',this)">AI</button>
-</div>
-</div>
+<div class="top"><h1> SPACE X ACADEMY</h1><p> 
 <div id="box"></div>
-<div class="assist">
-<h3 style="text-align:center;margin:0 0 10px 0">✨ Gemini - المساعد الذكي</h3>
-<div style="display:flex;gap:8px"><input id="gemQ" placeholder="اسأل Gemini: ازاي ابقى مبرمج ؟" style="flex:1;padding:11px;border-radius:10px;border:1px solid #333;background:#1a1a3a;color:#fff"><button onclick="askGem()" style="padding:11px 20px;border-radius:10px;border:none;background:#a78bfa;font-weight:bold">إرسال</button></div>
-<div id="gemA" style="margin-top:12px;color:#ccc;font-size:13px;line-height:1.7"></div>
-</div>
-<div class="footer"><div style="font-weight:bold"></div><div style="font-size:11px;color:#666;margin-top:6px">Space X Academy © - created by dinaalssawy allrightsreserved 2026 </div></div>
 <script>
 const courses=[
-["HTML5","الزيرو - 37 فيديو","https://www.youtube.com/watch?v=6QAELgirvjs","كود"],
-["CSS3","الزيرو - 88 فيديو","https://www.youtube.com/watch?v=X-0c4y8x1hs","كود"],
-["JavaScript","الزيرو - 188 فيديو","https://www.youtube.com/watch?v=GM6dQB53aB8","كود"],
-["Python","الزيرو - 150 فيديو","https://www.youtube.com/watch?v=mvZHDpCHphk","كود"],
-["React JS","Codezilla","https://www.youtube.com/watch?v=9wiWzu_tRB0","كود"],
-["Vue.js","Vue من الصفر","https://www.youtube.com/watch?v=FXpIoQ_rT_c","كود"],
-["PHP","الزيرو - PHP 8","https://www.youtube.com/watch?v=xcg9lV7aRSQ","كود"],
-["Laravel","Laravel 10","https://www.youtube.com/watch?v=ImtZ5yENzgE","كود"],
-["MySQL","قواعد البيانات","https://www.youtube.com/watch?v=DftlOK7yjII","كود"],
-["Git & GitHub","الزيرو","https://www.youtube.com/watch?v=Q6G-J54vgKc","كود"],
-["Bootstrap 5","تصميم سريع","https://www.youtube.com/watch?v=1W4F9Q2q9Yk","كود"],
-["Tailwind CSS","Framework حديث","https://www.youtube.com/watch?v=lCxcTsOHrjo","كود"],
-["TypeScript","JS مطور","https://www.youtube.com/watch?v=2ahjP0K3u2Y","كود"],
-["Flutter","تطبيقات موبايل","https://www.youtube.com/watch?v=eyw2FqF4c4Y","كود"],
-["Java","جافا كاملة","https://www.youtube.com/watch?v=Qgl3F2a1C5Y","كود"],
-["C++","اساسيات","https://www.youtube.com/watch?v=z9bZufPHCYs","كود"],
-["Linux","لينكس","https://www.youtube.com/watch?v=ZtqBQ68USpM","كود"],
-["Cyber Security","امن سيبراني","https://www.youtube.com/watch?v=2l2N3H1p3WQ","كود"],
-["Figma","تصميم UI/UX","https://www.youtube.com/watch?v=ezldKx-rEY0","تصميم"],
-["Photoshop","فوتوشوب CC","https://www.youtube.com/watch?v=IyR_uYsXzV8","تصميم"],
-["Illustrator","اليستريتور","https://www.youtube.com/watch?v=Ib8UBwu3yGA","تصميم"],
-["Adobe XD","تصميم واجهات","https://www.youtube.com/watch?v=68w2V51yW0M","تصميم"],
-["After Effects","موشن جرافيك","https://www.youtube.com/watch?v=8D0jK5R3s0M","تصميم"],
-["Premiere Pro","مونتاج فيديو","https://www.youtube.com/watch?v=1y2P3p4o5pQ","تصميم"],
-["Canva","تصميم للمبتدئين","https://www.youtube.com/watch?v=3g0H4H5I6J7K","تصميم"],
-["UI/UX Design","تصميم كامل","https://www.youtube.com/watch?v=ezldKx-rEY0","تصميم"],
-["Logo Design","تصميم لوجو","https://www.youtube.com/watch?v=1y2P3p4o5pQ","تصميم"],
-["Blender 3D","تصميم ثلاثي","https://www.youtube.com/watch?v=1y2P3p4o5pQ","تصميم"],
-["ذكاء اصطناعي","مقدمة AI","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["Machine Learning","تعلم آلة","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["Deep Learning","تعلم عميق","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["ChatGPT","احتراف","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["Python for AI","بايثون للذكاء","https://www.youtube.com/watch?v=mvZHDpCHphk","ذكاء"],
-["Data Science","علوم بيانات","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["Data Analysis","تحليل بيانات","https://www.youtube.com/watch?v=2ePf9rue1Ao","ذكاء"],
-["Excel","اكسيل متقدم","https://www.youtube.com/watch?v=2ePf9rue1Ao","كود"],
-["WordPress","انشاء مواقع","https://www.youtube.com/watch?v=1W4F9Q2q9Yk","كود"],
-["Digital Marketing","تسويق رقمي","https://www.youtube.com/watch?v=1y2P3p4o5pQ","تصميم"],
-["Freelancing","عمل حر","https://www.youtube.com/watch?v=1y2P3p4o5pQ","تصميم"],
-["SEO","تحسين محركات بحث","https://www.youtube.com/watch?v=1y2P3p4o5pQ","كود"],
-["YouTube","الربح من يوتيوب","https://www.youtube.com/watch?v=1y2P3p4o5pQ","تصميم"]
+["HTML5","Elzero - 37 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAwltIl0UIdRSzfh_C1jG9YlN"],
+["CSS3","Elzero - 88 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy1M0pIugF2vJ6Y7mN9gZt1"],
+["JavaScript","Elzero - 188 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLrvUD9rUs"],
+["Python","Elzero - 150 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE2A4PVcdOBxbMnPj-OHQ"],
+["React","Codezilla","https://www.youtube.com/results?search_query=react+js+elzero"],
+["PHP","Elzero PHP 8","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy41u35AqJUrI-H83DObUDq"],
+["Laravel","Laravel 10","https://www.youtube.com/results?search_query=laravel+elzero"],
+["MySQL","قواعد بيانات","https://www.youtube.com/playlist?list=PLDoPjvoNmBAzH72MTPuAAaYfR3z2Qd7zF"],
+["Git & GitHub","Git","https://www.youtube.com/playlist?list=PLDoPjvoNmBAw4SiQH2vN2r6pR5M1t7v9k"],
+["Figma","UI/UX Figma","https://www.youtube.com/results?search_query=figma+course+arabic"],
+["Photoshop","Photoshop CC","https://www.youtube.com/results?search_query=photoshop+elzero"],
+["Illustrator","Illustrator","https://www.youtube.com/results?search_query=illustrator+elzero"],
+["ذكاء اصطناعي","مقدمة AI","https://www.youtube.com/results?search_query=artificial+intelligence+arabic"],
+["Machine Learning","تعلم آلة","https://www.youtube.com/results?search_query=machine+learning+arabic"],
+["ChatGPT","احتراف ChatGPT","https://www.youtube.com/results?search_query=chatgpt+arabic"],
+["Flutter","تطبيقات موبايل","https://www.youtube.com/results?search_query=flutter+arabic"],
+["Java","Java كاملة","https://www.youtube.com/results?search_query=java+elzero"],
+["C++","C++","https://www.youtube.com/results?search_query=c%2B%2B+elzero"],
+["Cyber Security","امن سيبراني","https://www.youtube.com/results?search_query=cyber+security+arabic"],
+["Blender 3D","Blender","https://www.youtube.com/results?search_query=blender+3d+arabic"]
 ];
-function openLink(url){window.open(url,'_blank');}
-function render(list){let h="";list.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><span>${c[1]}</span><a onclick="openLink('${c[2]}')">ابدأ التعلم الآن</a></div>`});document.getElementById("box").innerHTML=h;}
-function doSearch(){let v=document.getElementById("search").value.toLowerCase();render(courses.filter(c=>c[0].toLowerCase().includes(v)||c[1].includes(v)));}
-function filterC(t,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(t=='all')render(courses);else render(courses.filter(c=>c[3]==t));}
-function askGem(){let q=document.getElementById("gemQ").value.trim();let a=document.getElementById("gemA");if(!q){a.innerHTML="اكتب سؤالك...";return;}a.innerHTML="⏳ Gemini يفكر...";setTimeout(()=>{let ql=q.toLowerCase();let ans="";if(ql.includes("فرونت"))ans="فرونت اند: HTML -> CSS -> JavaScript -> React";else if(ql.includes("باك"))ans="باك اند: PHP + MySQL او Node.js";else if(ql.includes("تصميم"))ans="تصميم: Figma -> Photoshop -> UI/UX";else if(ql.includes("ai")||ql.includes("ذكاء"))ans="AI: Python -> ML -> Deep Learning";else ans=`بالنسبة لـ "${q}" ابدأي بالاساسيات!`;a.innerHTML=ans+" 🚀";},600);}
-render(courses);
+let h="";courses.forEach(c=>{h+=`<div class="card"><b>${c[0]}</b><span>${c[1]}</span><a href="${c[2]}" target="_blank">ابدأ التعلم الآن 🚀</a></div>`});
+document.getElementById("box").innerHTML=h;
 </script>
 </body>
-  </html>
+</html>
