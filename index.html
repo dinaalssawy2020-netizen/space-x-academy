@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SPACE X ACADEMY</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#060614;color:#fff;font-family:'Cairo',sans-serif}
-.header{background:#1a1040;padding:18px;text-align:center;font-weight:bold;letter-spacing:1px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#1e1e3a;border-radius:12px;padding:14px;text-align:center;border:1px solid #2e2e5a}
-.card h3{margin:0;font-size:14px}
-.card p{margin:5px 0 10px 0;font-size:11px;color:#aaa}
-.card a{display:block;background:#fff;color:#000;text-decoration:none;padding:8px;border-radius:8px;font-weight:bold;font-size:12px}
-.box-gemini{margin:12px;background:#15152b;border:1px solid #a78bfa;border-radius:12px;padding:14px}
-.box-gemini input{width:75%;padding:10px;border-radius:8px;border:1px solid #333;background:#0f0f22;color:#fff}
-.box-gemini button{width:20%;padding:10px;border-radius:8px;border:none;background:#a78bfa;font-weight:bold}
-.footer{text-align:center;padding:20px;font-size:11px;color:#666;border-top:1px solid #222;margin-top:20px}
-.footer b{color:#a78bfa}
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPACEX ACADEMY</title>
+<style>body{margin:0;background:#060614;color:#fff;font-family:sans-serif}.h{background:#1a1040;padding:18px;text-align:center;font-weight:bold}.g{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.c{background:#1e1e3a;border-radius:12px;padding:14px;text-align:center;border:1px solid #333}.c a{display:block;background:#fff;color:#000;text-decoration:none;padding:8px;border-radius:8px;font-weight:bold;font-size:12px;margin-top:8px}.gemini{margin:12px;background:#15152b;border:1px solid #a78bfa;border-radius:12px;padding:14px}.footer{text-align:center;padding:20px;font-size:11px;color:#666;border-top:1px solid #222;margin-top:20px}.footer b{color:#a78bfa}</style>
 </head>
 <body>
-<div class="header">spacex academy</div>
-
-<div class="grid" id="grid"></div>
-
-<div class="box-gemini">
-<div style="text-align:center;margin-bottom:8px">Gemini - 🌟 المساعد الذكي 🌟</div>
-<div style="display:flex;gap:6px;justify-content:center">
-<input id="q" placeholder="اسأل؟">
-<button onclick="askGemini()">إرسال</button>
-</div>
-<div id="ans" style="margin-top:10px;font-size:13px;color:#ccc"></div>
-</div>
-
-<div class="footer">
-<div>: <b>
-<div style="margin-top:5px">SpaceX Academy © Created by dinaalssawy - All rights reserved 2026 </div>
-</div>
-
+<div class="h"> SPACEX ACADEMY</div>
+<div class="g" id="g"></div>
+<div class="gemini"><div style="text-align:center">✨ Gemini المساعد</div><div style="display:flex;gap:6px;margin-top:8px"><input id="q" placeholder="ازاي ابقى مبرمج ؟" style="flex:1;padding:10px;border-radius:8px;border:1px solid #333;background:#000;color:#fff"><button onclick="ask()" style="padding:10px 15px;border-radius:8px;background:#a78bfa;border:none;font-weight:bold">إرسال</button></div><div id="an" style="margin-top:10px;color:#ccc;font-size:13px"></div></div>
+<div class="footer">:<b></b><br>Created by dinaalssawy all rightsreserved 2026</div>
 <script>
-var data = [
-["HTML5","الزيرو - 37 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAwltIl0UIdRSzfh_C1jG9YlN"],
-["CSS3","الزيرو - 88 فيديو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAy1M0pIugF2vJ6Y7mN9gZt1"],
-["JavaScript","الزيرو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLrvUD9rUs"],
-["Python","الزيرو","https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE2A4PVcdOBxbMnPj-OHQ"],
-["React","Codezilla","https://www.youtube.com/results?search_query=react+elzero"],
-["Figma","UI/UX","https://www.youtube.com/results?search_query=figma+arabic"],
-["Photoshop","فوتوشوب","https://www.youtube.com/results?search_query=photoshop+arabic"],
-["AI","ذكاء اصطناعي","https://www.youtube.com/results?search_query=ai+arabic+course"],
-["Flutter","موبايل","https://www.youtube.com/results?search_query=flutter+arabic"],
-["Cyber Security","امن سيبراني","https://www.youtube.com/results?search_query=cyber+security+arabic"]
+let d=[
+["HTML5","Elzero Web School","https://www.youtube.com/results?search_query=elzero+html"],
+["CSS3","Elzero Web School","https://www.youtube.com/results?search_query=elzero+css"],
+["JavaScript","Elzero Web School","https://www.youtube.com/results?search_query=elzero+javascript"],
+["Python","Elzero Web School","https://www.youtube.com/results?search_query=elzero+python"],
+["React","Codezilla","https://www.youtube.com/results?search_query=codezilla+react"],
+["PHP","Elzero","https://www.youtube.com/results?search_query=elzero+php"],
+["MySQL","Elzero","https://www.youtube.com/results?search_query=elzero+mysql"],
+["Figma","UI UX Design","https://www.youtube.com/results?search_query=figma+arabic+course"],
+["Photoshop","Photoshop Course","https://www.youtube.com/results?search_query=photoshop+course+arabic"],
+["Illustrator","Illustrator Course","https://www.youtube.com/results?search_query=illustrator+course+arabic"],
+["ذكاء اصطناعي","AI Course Arabic","https://www.youtube.com/results?search_query=artificial+intelligence+arabic+course"],
+["Flutter","Flutter Arabic","https://www.youtube.com/results?search_query=flutter+arabic+course"],
+["Cyber Security","امن سيبراني","https://www.youtube.com/results?search_query=cyber+security+arabic+course"],
+["Blender 3D","Blender Arabic","https://www.youtube.com/results?search_query=blender+3d+arabic+course"],
+["Excel","اكسيل","https://www.youtube.com/results?search_query=excel+arabic+course"]
 ];
-
-var grid = document.getElementById("grid");
-var html = "";
-for(var i=0;i<data.length;i++){
-html += '<div class="card"><h3>'+data[i][0]+'</h3><p>'+data[i][1]+'</p><a href="'+data[i][2]+'" target="_blank">ابدأ التعلم</a></div>';
-}
-grid.innerHTML = html;
-
-function askGemini(){
-var q = document.getElementById("q").value;
-var a = document.getElementById("ans");
-if(!q){a.innerHTML="اكتب سؤالك";return;}
-a.innerHTML="⏳ Gemini بيفكر...";
-setTimeout(function(){a.innerHTML="لـ '"+q+"' : ابدأي بالاساسيات HTML ثم CSS ثم JavaScript!";},600);
-}
+let h="";for(let i=0;i<d.length;i++){h+=`<div class="c"><b>${d[i][0]}</b><br><small style="color:#888">${d[i][1]}</small><a href="${d[i][2]}" target="_blank">ابدأ التعلم</a></div>`}
+document.getElementById("g").innerHTML=h;
+function ask(){let q=document.getElementById("q").value;let a=document.getElementById("an");if(!q){a.innerHTML="اكتب سؤالك";return} a.innerHTML="⏳ Gemini بيفكر...";setTimeout(()=>{a.innerHTML="عشان '"+q+"' : ابدأي HTML -> CSS -> JS وبعدين اتخصصي🗯"},600)}
 </script>
 </body>
 </html>
