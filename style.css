@@ -230,4 +230,44 @@ body {
 .btn-add-cart:hover {
     background: #34495e;
 }
+/* تنسيق قسم الأسئلة الشائعة */
+.faq-section {
+    padding: 60px 5%;
+    background-color: #ffffff;
+}
+.faq-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: right;
+}
+.faq-item {
+    border-bottom: 1px solid #eaeded;
+    margin-bottom: 15px;
+}
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 15px 0;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* حركة فتح وإغلاق ناعمة */
+}
+.faq-answer p {
+    color: #7f8c8d;
+    padding-bottom: 15px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
 
