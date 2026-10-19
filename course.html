@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>الكورسات</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { padding: 20px; background: #f5f5f5; font-family: Arial; }
-    .course-card { background: white; padding: 20px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    h1 { text-align: center; color: #333; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space X Academy - الكورسات المتاحة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>الكورسات المتاحة 🎓</h1>
 
-  <div class="course-card">
-    <h3>1. كورس البرمجة من الصفر - Elzero</h3>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=PLDoPjvoNmBAzHSjcRjGYC-0PQRfS7U1fF" frameborder="0" allowfullscreen></iframe>
-    <p>تعلم HTML, CSS, JavaScript خطوة خطوة</p>
-  </div>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/YnSdYfQv7oY" 
-title="Elzero Web School" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
-  <div class="course-card">
-    <h3>2. كورس تعلم اليوتيوب والتصميم</h3>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID_2" 
-title="YouTube video" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=PLknwEmKsW8OsG8dnis_UPFjVGHVxrhjaj" frameborder="0" allowfullscreen></iframe>
-    <p>من انشاء القناة لحد الربح</p>
-  </div>
+    <!-- شريط التنقل العلوي للربط بين الصفحات -->
+    <header class="academy-header">
+        <div class="logo">💻 Space X Academy</div>
+        <nav class="nav-links">
+            <a href="index.html">الرئيسية (المساعد)</a>
+            <a href="courses.html" class="active">الكورسات</a>
+        </nav>
+        <div class="cart-icon">
+            🛒 السلة: <span id="cart-count">0</span>
+        </div>
+    </header>
 
-  <div class="course-card">
-    <h3>3. كورس الذكاء الاصطناعي</h3>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID_3" 
-title="YouTube video" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=PLQg6GaokU5CwF8v6C1V5sQ5Q5Q5Q5Q5Q5" frameborder="0" allowfullscreen></iframe>
-    <p>تطوير ويب + AI للمبتدئين</p>
-  </div>
+    <!-- قسم الكورسات -->
+    <section class="courses-section">
+        <h2 class="section-title">أحدث الكورسات البرمجية المتاحة</h2>
+        
+        <div class="courses-grid">
+            <!-- الكورس الأول -->
+            <div class="course-card">
+                <span class="badge programming">برمجة الويب</span>
+                <h3>دورة تطوير الويب المتكاملة</h3>
+                <p>تعلم HTML, CSS, JavaScript وبناء مواقع تفاعلية حقيقية من الصفر.</p>
+                <div class="card-footer">
+                    <span class="price">49$</span>
+                    <button class="btn-add-cart" onclick="addToCart()">إضافة للسلة</button>
+                </div>
+            </div>
 
+            <!-- الكورس الثاني -->
+            <div class="course-card">
+                <span class="badge design">التصميم</span>
+                <h3>أساسيات تصميم UI/UX</h3>
+                <p>احترف تصميم واجهات المستخدم وتجربة المستخدم للمواقع والتطبيقات باستخدام Figma.</p>
+                <div class="card-footer">
+                    <span class="price">29$</span>
+                    <button class="btn-add-cart" onclick="addToCart()">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- الكورس الثالث -->
+            <div class="course-card">
+                <span class="badge marketing">التسويق</span>
+                <h3>التسويق الرقمي الشامل</h3>
+                <p>تعلم استراتيجيات التسويق عبر منصات التواصل الاجتماعي وتحليل البيانات.</p>
+                <div class="card-footer">
+                    <span class="price">39$</span>
+                    <button class="btn-add-cart" onclick="addToCart()">إضافة للسلة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ربط ملف الجافا سكريبت لتشغيل السلة -->
+    <script src="script.js"></script>
 </body>
 </html>
