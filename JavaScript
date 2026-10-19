@@ -111,4 +111,20 @@ function addToCart() {
     // إشعار بسيط وغير متكلف للمستخدم عند الإضافة
     alert("تم إضافة الدورة المحددة إلى سلة المشتريات!");
 }
+function toggleFaq(button) {
+    // الحصول على عنصر الإجابة الذي يلي الزر مباشرة
+    const answer = button.nextElementSibling;
+    const icon = button.querySelector('span');
+    
+    // إذا كانت الإجابة مفتوحة، قم بإغلاقها
+    if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
+        answer.style.maxHeight = "0px";
+        icon.innerText = "+";
+    } else {
+        // إذا كانت مغلقة، قم بفتحها وحساب طول المحتوى تلقائياً
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        icon.innerText = "-";
+    }
+}
+
 
