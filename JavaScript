@@ -7,7 +7,7 @@ var data = [
     { title: "شرح Figma", cat: "design", url: "https://youtube.com" }, 
     { title: "دورة UI/UX", cat: "design", url: "https://youtube.com" }, 
     { title: "تعلم Photoshop", cat: "design", url: "https://youtube.com" }, 
-    { title: "ذكاء اصطناعي مقدمة", cat: "data", url: "https://youtube.com" }, 
+    { AI ", cat: "data", url: "https://youtube.com" }, 
     { title: "علم البيانات", cat: "data", url: "https://youtube.com" }, 
     { title: "كورس انجليزي", cat: "business", url: "https://youtube.com" }, 
     { title: "شرح العمل الحر", cat: "business", url: "https://youtube.com" }, 
