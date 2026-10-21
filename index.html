@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SPACEX ACADEMY</title>
 <style>
+/* تم الحفاظ على هيكل وتصميم الألوان الأصلي الخاص بكِ مع تعديلات طفيفة لتناسب نظام التقييم */
 body{margin:0;background:#060614;color:#fff;font-family:sans-serif}
 .h{background:#1a1040;padding:18px;text-align:center;font-weight:bold;color:#a78bfa;font-size:18px;letter-spacing:1px}
 .g{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
@@ -15,24 +16,27 @@ body{margin:0;background:#060614;color:#fff;font-family:sans-serif}
 </style>
 </head>
 <body>
-</header>
 
 <div class="h"> SPACEX ACADEMY</div>
 
+<!-- شبكة الكورسات الأصلية الخاصة بكِ -->
 <div class="g" id="g"></div>
 
+<!-- صندوق التقييم الذكي المدمج في موقعكِ الأصلي -->
 <div class="gemini">
-<div style="text-align:center">🌟 Gemini 🌟 </div>
+<div style="text-align:center; font-weight: bold; color: #a78bfa;">📊 نظام التقييم والامتحانات التلقائي 📊</div>
 <div style="display:flex;gap:6px;margin-top:8px">
-<input id="q" placeholder="ازاي ابقى مبرمج ؟" style="flex:1;padding:10px;border-radius:8px;border:1px solid #333;background:#000;color:#fff">
-<button onclick="ask()" style="padding:10px 15px;border-radius:8px;background:#a78bfa;border:none;font-weight:bold">إرسال</button>
+<!-- تم تغيير الـ Placeholder ليناسب فكرة الاختبارات والأكاديمية التعليمية -->
+<input id="q" placeholder="اكتب إجابتك على السؤال المطروح هنا لتقييمها..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #333;background:#000;color:#fff">
+<button id="btn-submit" onclick="ask()" style="padding:10px 15px;border-radius:8px;background:#a78bfa;border:none;font-weight:bold;color:#000;cursor:pointer">إرسال</button>
 </div>
-<div id="an" style="margin-top:10px;color:#ccc;font-size:13px"></div>
+<div id="an" style="margin-top:10px;color:#ccc;font-size:13px;line-height:1.6"></div>
 </div>
 
-<div class="footer"> <b> Created by dinaalssawy © - All rights reserved 2026 </div>
+<div class="footer"> <b> Created by dinaalssawy © - All rights reserved 2026 </b></div>
 
 <script>
+// الحفاظ الكامل على مصفوفة الكورسات والبيانات الخاصة بكِ
 let d=[
 ["HTML5","Elzero Web School","https://www.youtube.com/results?search_query=elzero+html"],
 ["CSS3","Elzero Web School","https://www.youtube.com/results?search_query=elzero+css"],
@@ -50,9 +54,62 @@ let d=[
 ["Blender 3D","Blender Arabic","https://www.youtube.com/results?search_query=blender+3d+arabic+course"],
 ["Excel","اكسيل","https://www.youtube.com/results?search_query=excel+arabic+course"]
 ];
-let h="";for(let i=0;i<d.length;i++){h+=`<div class="c"><b>${d[i][0]}</b><br><small style="color:#888">${d[i][1]}</small><a href="${d[i][2]}" target="_blank">ابدأ التعلم</a></div>`}
+
+let h="";
+for(let i=0;i<d.length;i++){
+    h+=`<div class="c"><b>${d[i][0]}</b><br><small style="color:#888">${d[i][1]}</small><a href="${d[i][2]}" target="_blank">ابدأ التعلم</a></div>`
+}
 document.getElementById("g").innerHTML=h;
-function ask(){let q=document.getElementById("q").value;let a=document.getElementById("an");if(!q){a.innerHTML="اكتب سؤالك";return} a.innerHTML="⏳ Gemini بيفكر...";setTimeout(()=>{a.innerHTML="عشان '"+q+"' : ابدأي HTML -> CSS -> JS وبعدين اتخصصي"},600)}
+
+// دمج نظام الربط الخلفي الذكي السري والتصحيح التلقائي
+const API_KEY = "ضعي_مفتاح_API_الخاص_بِك_هنا"; 
+
+async function ask(){
+    let q = document.getElementById("q").value.trim();
+    let a = document.getElementById("an");
+    let btn = document.getElementById("btn-submit");
+    
+    if(!q){
+        a.innerHTML = "<span style='color:#ef4444;'>الرجاء كتابة الإجابة أولاً قبل الإرسال.</span>";
+        return;
+    } 
+    
+    // إظهار نصوص فحص برمجية عادية تابعة للأكاديمية لإخفاء هوية الـ AI
+    a.innerHTML = "⏳ جاري مراجعة الإجابة وتدقيقها بواسطة نظام الأكاديمية التلقائي...";
+    btn.disabled = true;
+    
+    // إرسال الـ Prompt الأكاديمي السري للخلفية لتقييم إجابة المواد التعليمية
+    const systemPrompt = `أنت مصحح أكاديمي آلي لـ "SPACEX ACADEMY". قم بتقييم إجابة الطالب التالية فورياً وبشكل موضوعي. اعطِ درجة من 10، ثم اذكر ملاحظة تصحيحية قصيرة جداً (نصائح للتحسين أو نقاط القوة). 
+    تنبيه صارم: لا تذكر أبداً أنك ذكاء اصطناعي أو نموذج لغوي أو Gemini. يجب أن تظهر النتيجة كأنها صادرة من نظام تصحيح الأكاديمية التلقائي فقط.
+    إجابة الطالب: "${q}"`;
+    
+    try {
+        const response = await fetch(`https://googleapis.com{API_KEY}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: systemPrompt }] }]
+            })
+        });
+
+        const data = await response.json();
+        
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            let evaluation = data.candidates[0].content.parts[0].text;
+            // عرض التقرير الصادر من النظام للطالب
+            a.innerHTML = `<strong style='color:#a78bfa;'>📋 تقرير نظام التصحيح الإلكتروني:</strong><br>${evaluation}`;
+        } else {
+            a.innerHTML = "⚠️ تعذر مراجعة الإجابة حالياً، يرجى المحاولة مرة أخرى.";
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        a.innerHTML = "⚠️ حدث خطأ أثناء الاتصال بخادم التقييم.";
+    } finally {
+        btn.disabled = false;
+    }
+}
 </script>
 </body>
 </html>
